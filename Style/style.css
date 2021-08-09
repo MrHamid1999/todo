@@ -1,0 +1,161 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+section.container{
+    height: 100%;
+    width: 100%;
+    background: url('../Image/213775_night-sky-wallpaper.jpg') ;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wrapper .search-sec{
+    width: 90%;
+    display: flex;
+    height: 40px;
+    margin-top: 35px;
+
+}
+.search-sec.active{
+    display: flex;
+    justify-content: space-around;
+}
+.search-sec .search-box{
+    width: 0%;
+    height: 35px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    transition: width 0.5s ease-in;
+    border: none;
+}
+.search-sec.active .search-box:focus{
+    outline: none;
+}
+.search-sec.active .search-box{
+    width: 70%;
+}
+
+.search-sec button{
+    width: 100%;
+    height: 35px;
+    background-color: #02640f ;
+    border: none;
+    border-radius: 20px;
+    color: rgb(219, 219, 219);
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.5s linear;
+}
+.search-sec.active button{
+    width: 40px;
+    height: 40px;
+    justify-self: end;
+    cursor: pointer;
+
+}
+.wrapper .items-todo{
+    width: 90%;
+    height:65%;
+    margin-top: 50px;
+}
+.items-todo .item{
+    width: 100%;
+    min-height: 35px;
+    height: auto;
+    display: flex;
+    justify-content:space-around;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    transition: diplay 0.5s linear;
+}
+.item .item-text{
+    width: 85%;
+    background:#262431c7 ;
+    border-radius: 20px;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+.item li {
+    color: rgb(202, 16, 16);
+    font-size: 2rem;
+    cursor: pointer;
+   
+}
+.add-sec{
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.add-sec input{
+    width: 100%;
+    height:35px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    color: rgb(37, 37, 37);
+    display: none;
+    
+}
+.add-sec input:active{
+    padding-left: 20px;
+}
+.add-sec button{
+    width: 100%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(18, 68, 207);
+    color: #ccc;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.5s linear;
+    cursor: pointer;
+}
+@media only screen and (min-width:600px){
+    .wrapper .search-sec{
+        width: 60%;
+    }
+    .add-sec{
+        width: 60%;
+    }
+}
+@media only screen and (min-width:759px){
+    .wrapper .search-sec{
+        width: 40%;
+    }
+    .wrapper .items-todo{
+        width: 60%;
+    }
+    .add-sec{
+        width: 40%;
+    }
+}
