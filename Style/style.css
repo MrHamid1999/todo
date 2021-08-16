@@ -72,35 +72,47 @@ section.container{
     cursor: pointer;
 
 }
-.wrapper .items-todo{
+.wrapper .item-sec{
     width: 90%;
-    height:65%;
-    margin-top: 50px;
-}
-.items-todo .item{
-    width: 100%;
-    min-height: 35px;
-    height: auto;
+    height: 60%;
     display: flex;
-    justify-content:space-around;
-    margin-bottom: 10px;
-    overflow-y: auto;
-    transition: diplay 0.5s linear;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 50px;
+    overflow-y : hidden;
 }
-.item .item-text{
-    width: 85%;
-    background:#262431c7 ;
+.item-sec ul {
+    height: auto;
+    width: 100%;
+    overflow-y: auto;
+}
+.item-sec ul .item {
+    height: 35px;
+    width: 100%;
+    list-style: none;
     border-radius: 20px;
-    color: #ccc;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.item span.text-content{
+    background: rgba(21, 21, 26, 0.788);
+    padding-left: 15px;
+    width: 90%;
     display: flex;
     align-items: center;
-    padding-left: 10px;
+    border-radius: 20px;
+    color: #ccc;
+    font-size: 1.3rem;
+    
 }
-.item li {
-    color: rgb(202, 16, 16);
+.item span.zmdi-delete{
+    color: red;
     font-size: 2rem;
+    display: flex;
+    align-items: center;
     cursor: pointer;
-   
 }
 .add-sec{
     width: 90%;
@@ -109,9 +121,37 @@ section.container{
     flex-direction: column;
     align-items: center;
 }
+.add-sec form {
+    width:100%;
+}
+.add-sec li{
+    font-size:1.5rem;
+    padding: 5px 10px;
+    position: relative;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    color: #ccc;
+    border-radius: 50%;
+}
+.add-sec li:hover{
+    background: #e205059a;
+    
+}
+.add-sec form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form.clicked li{
+    opacity: 1;
+    top: -10px;
+}
 .add-sec input{
     width: 100%;
-    height:35px;
+    height:0;
     background-color: aliceblue;
     border-radius: 20px;
     margin-bottom: 10px;
@@ -119,10 +159,13 @@ section.container{
     outline: none;
     font-size: 1.3rem;
     color: rgb(37, 37, 37);
-    display: none;
+    transition: height 0.5s linear;
     
 }
-.add-sec input:active{
+form.clicked input{
+    height: 35px;
+}
+.add-sec input:focus{
     padding-left: 20px;
 }
 .add-sec button{
@@ -152,7 +195,7 @@ section.container{
     .wrapper .search-sec{
         width: 40%;
     }
-    .wrapper .items-todo{
+    .wrapper .item-sec{
         width: 60%;
     }
     .add-sec{
