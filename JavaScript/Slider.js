@@ -1,6 +1,6 @@
 // trying to get the value of local storage
 
-initialValue = localStorage.getItem("initialValue");
+let initialValue = localStorage.getItem("initialValue");
 
 try {
     initialValue = JSON.parse(initialValue)
@@ -21,7 +21,7 @@ function controller(initialValue) {
     let list = document.querySelector(".list-items")
     list.innerHTML = ""
     Array.from(initialValue).forEach((value, index) => {
-        // creating an li and its chils 
+        // creating an li and its chils
         let li = document.createElement("li");
         let text = document.createElement("span");
         let deleteBtn = document.createElement("span");
@@ -49,40 +49,54 @@ function controller(initialValue) {
             controller(initialValue);
         })
 
-        // adding new item to todos 
-        const addBtn =document.querySelector("button.add-btn");
-        addBtn.addEventListener("click" , e => {
-            e.preventDefault();
-            const parent = addBtn.parentElement;
-            let addValue = addBtn.previousElementSibling;
-            const addCloser = addValue.previousElementSibling;
-            if (addBtn.innerText == "add") {
-               addBtn.innerText ="create";
-               parent.classList.add("clicked");
-            }else{
-                addBtn.innerText = "add";
-               parent.classList.remove("clicked");
-               if (addValue) {
-                   addValue = {content : addValue.value , status : true};
-                   initialValue.push(addValue);
-                   localStorage.setItem( "initialValue" , JSON.stringify(initialValue));
-                  
-                   controller(initialValue);
-                   addBtn.previousElementSibling.value = null
-               }
 
-            }
-            addCloser.addEventListener("click" , () => {
-                addBtn.innerText = "add";
-                parent.classList.remove("clicked");
-                addBtn.previousElementSibling.value = null
-            })
-        })
 
     });
 }
 controller(initialValue);
+// adding new item to todos
+const addBtn =document.querySelector("button.add-btn");
+addBtn.addEventListener("click" , e => {
+    e.preventDefault();
+    const parent = addBtn.parentElement;
+    let addValue = addBtn.previousElementSibling;
+    const addCloser = addValue.previousElementSibling;
+    if (addBtn.innerText == "add") {
+       addBtn.innerText ="create";
+       parent.classList.add("clicked");
+    }else{
+        addBtn.innerText = "add";
+       parent.classList.remove("clicked");
+       if (addValue.value != null && addValue.value != "") {
+        console.log(addValue.value)
+           addValue = {content : addValue.value , status : true};
+           initialValue.push(addValue);
+           localStorage.setItem( "initialValue" , JSON.stringify(initialValue));
 
+           controller(initialValue);
+           addBtn.previousElementSibling.value = null
+       }
+    }
+    addCloser.addEventListener("click" , () => {
+        addBtn.innerText = "add";
+        parent.classList.remove("clicked");
+        addBtn.previousElementSibling.value = null
+    })
+})
+// adding submit event
+const form = document.querySelector("#add-form")
+form.addEventListener("submit" , e => {
+ e.preventDefault();
+
+  if (form.textbox.value != null && form.textbox.value != "") {
+    let addValue = {content : form.textbox.value , status : true};
+    initialValue.push(addValue);
+    localStorage.setItem( "initialValue" , JSON.stringify(initialValue));
+
+    controller(initialValue);
+    addBtn.previousElementSibling.value = null
+}
+})
 // adding search options to project
 const searchBtn = document.querySelector(".search-btn");
 searchBtn.addEventListener("click" , () => {
@@ -97,9 +111,9 @@ searchBtn.addEventListener("click" , () => {
         searchValue.value = null;
     }
     searchValue.addEventListener("keyup" , e => {
-       
+
         document.querySelectorAll(".item").forEach(item => {
-            
+
             if(item.innerText.includes(searchValue.value))
             {
                 item.style.display = "flex"
